@@ -1,5 +1,4 @@
 const { arango, database, testDb, upsert } = require('./db')
-
 //iksQuery()
 module.exports = {
   iksQuery
@@ -146,7 +145,7 @@ async function iksQuery() {
         //info(iks.rt)
         result.push(iks)
         iks._key = ['iks', iks.kel.split(' ').join('_'), iks.rw, iks.rt].join('-')
-        await upsert('iks', iks)
+       await upsert('iks', iks)
       }
       let iks = {
         kel: kel,
@@ -178,7 +177,7 @@ async function iksQuery() {
       //info(iks)
       result.push(iks)
       iks._key = ['iks', iks.kel.split(' ').join('_'), iks.rw, iks.rt].join('-')
-      await upsert('iks', iks)
+     await upsert('iks', iks)
 
     }
     let iks = {
@@ -211,7 +210,7 @@ async function iksQuery() {
     //console.log(iks)
     result.push(iks)
     iks._key = ['iks', iks.kel.split(' ').join('_'), iks.rw, iks.rt].join('-')
-    await upsert('iks', iks)
+   await upsert('iks', iks)
   } catch (err) {
     console.log(err)
   }

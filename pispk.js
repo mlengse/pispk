@@ -1,5 +1,6 @@
 require('dotenv').config()
 const moment = require('moment')
+const path = require('path')
 const { waitUntilExists } = require('./common')
 const url = process.env.PISPK_URL
 const username = process.env.PISPK_USERNAME
@@ -31,7 +32,7 @@ const downloadPispk = async pispk => {
     await waitUntilExists(pispk, inputSelection)
     await pispk.type(inputSelection, thisYear)
     await pispk.type(inputSelection, '\u000d')
-    let dl = await pispk.mousedown(download).click(download).download()
+    let dl = await pispk.mousedown(download).click(download).download(path.join(__dirname,'download', 'survei.xlsx'))
     console.log(dl)
 
   }catch(err){
