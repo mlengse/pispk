@@ -11,7 +11,7 @@ const download = require('./download')
 moment.locale('id');
 
 const strf = obj => Object.keys(obj).map(e => `
-  ${e}: ${typeof obj[e] === 'string' ? obj[e] : typeof obj[e] === 'number' ? obj[e] : `${strf(obj[e])}`}`)
+  ${e}: ${typeof obj[e] === 'string' ? obj[e] : typeof obj[e] === 'number' ? obj[e] : typeof obj[e]}`)
 
 const writeStat = (file, no, stat, obj) => {
   
@@ -27,7 +27,7 @@ const writeStat = (file, no, stat, obj) => {
 
 
 (async () => {
-  //await download()
+  await download()
 
   let fileNames = fs.readdirSync(path.join(__dirname, 'download')).filter(item => item.includes('.xlsx'))
 
@@ -75,9 +75,9 @@ const writeStat = (file, no, stat, obj) => {
           tgl: moment(obj['TANGGAL SURVEI'], 'YYYY-MM-DD').format('DD/MM/YYYY')
         };
 
-        //writeStat(item, i, 'init', inpObj)
+        writeStat(item, i, 'init', inpObj)
         let { OLD, NEW } = await upsert('pispk', inpObj)
-        //writeStat(item, i, 'old', OLD)
+        writeStat(item, i, 'old', OLD)
         writeStat(item, i, 'new', NEW)
       }
 
