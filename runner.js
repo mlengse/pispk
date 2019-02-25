@@ -21,8 +21,8 @@ const writeStat = (file, no, stat, obj) => {
 `)};
 
 
-(async () => {
-  //await download()
+module.exports = async () => {
+  await download()
 
   let fileNames = fs.readdirSync(path.join(__dirname, 'download')).filter(item => item.includes('.xlsx'))
 
@@ -84,4 +84,4 @@ const writeStat = (file, no, stat, obj) => {
   let res = await iksQuery()
   console.log(res.length)
 
-})()
+}
