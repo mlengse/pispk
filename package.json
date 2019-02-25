@@ -6,13 +6,15 @@
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1"
   },
-  "author": "",
+  "author": "mlengse",
   "license": "MIT",
   "dependencies": {
     "arangojs": "^6.10.0",
     "convert-excel-to-json": "^1.6.0",
     "dotenv": "^6.2.0",
+    "log-update": "^2.3.0",
     "moment": "^2.24.0",
-    "nightmare": "^3.0.1"
+    "nightmare": "^3.0.1",
+    "nightmare-inline-download": "^0.2.2"
   }
 }

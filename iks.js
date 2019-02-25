@@ -208,12 +208,12 @@ async function iksQuery() {
       iks[each].penyebut = iks[each].y + iks[each].t;
       iks[each].iks = iks[each].y / iks[each].penyebut
     }
-    console.log(iks)
+    //console.log(iks)
     result.push(iks)
     iks._key = ['iks', iks.kel.split(' ').join('_'), iks.rw, iks.rt].join('-')
     await upsert('iks', iks)
   } catch (err) {
     console.log(err)
   }
-  console.log(result)
+  return result
 }
