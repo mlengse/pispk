@@ -15,6 +15,7 @@
     "log-update": "^2.3.0",
     "moment": "^2.24.0",
     "nightmare": "^3.0.1",
-    "nightmare-inline-download": "^0.2.2"
+    "nightmare-inline-download": "^0.2.2",
+    "node-cron": "^2.0.3"
   }
 }

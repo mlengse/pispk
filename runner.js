@@ -84,7 +84,6 @@ const writeStat = (file, no, stat, obj) => {
     }
   }
 
-  let rekap = await iksQuery()
-
+  await iksQuery()
 
 })()
