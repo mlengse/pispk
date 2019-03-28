@@ -1,6 +1,8 @@
 const { schedule } = require('node-cron')
 const runner = require('./runner')
-schedule('5 1 * * 0,5,6', () => {
-  console.log('start', new Date())
-  runner()  
+schedule('5 1 * * 0,6', async () => {
+  for (let pusk of ['sibela', 'purwosari']) {
+    console.log('start', pusk, new Date())
+    await runner(pusk)
+  }
 })
