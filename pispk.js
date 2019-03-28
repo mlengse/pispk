@@ -1,17 +1,14 @@
 require('dotenv').config()
-const moment = require('moment')
 const path = require('path')
 const { waitUntilExists } = require('./common')
 const url = process.env.PISPK_URL
-const username = process.env.PISPK_USERNAME
-const password = process.env.PISPK_PASSWORD
 const selectionTahun = process.env.SELECTION
 const inputSelection = process.env.SELECTION_INPUT
 const download = process.env.SELECTION_DOWNLOAD
 
-const thisYear = moment().format('YYYY')
-
-const loginPispk = async pispk => {
+const loginPispk = async (pispk, pusk) => {
+  const username = process.env[`PISPK_${pusk}_USERNAME`]
+  const password = process.env[`PISPK_${pusk}_PASSWORD`]
   try {
     await pispk.goto(url)
       .insert('#username', username)
@@ -23,17 +20,23 @@ const loginPispk = async pispk => {
   }
 }
 
-const downloadPispk = async pispk => {
+const downloadPispk = async (pispk, pusk, tahun) => {
   try{
-    await loginPispk(pispk)
-    await pispk.goto(`${url}rawdata_survei`)
-    await waitUntilExists(pispk, selectionTahun)
-    await pispk.mousedown(selectionTahun).click(selectionTahun)
-    await waitUntilExists(pispk, inputSelection)
-    await pispk.type(inputSelection, thisYear)
-    await pispk.type(inputSelection, '\u000d')
-    let dl = await pispk.mousedown(download).click(download).download(path.join(__dirname,'download', 'survei.xlsx'))
-    console.log(dl)
+    await loginPispk(pispk, pusk)
+
+    for (let thisYear of tahun) {
+      await pispk.goto(`${url}rawdata_survei`)
+
+      await waitUntilExists(pispk, selectionTahun)
+      await pispk.mousedown(selectionTahun).click(selectionTahun)
+      await waitUntilExists(pispk, inputSelection)
+      await pispk.type(inputSelection, thisYear)
+      await pispk.type(inputSelection, '\u000d')
+      let dl = await pispk.mousedown(download).click(download).download(path.join(__dirname, 'download', `survei-${pusk}-${thisYear}.xlsx`))
+      console.log(dl)
+
+    }
+
 
   }catch(err){
     console.log(err)

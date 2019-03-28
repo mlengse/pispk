@@ -1,10 +1,11 @@
-const { arango, database, testDb, upsert } = require('./db')
+const { arango, testDb, upsert } = require('./db')
 //iksQuery()
 module.exports = {
   iksQuery
 }
 
-async function iksQuery() {
+async function iksQuery(pusk) {
+  let database = pusk
   let result = []
   try {
     let dbready = await testDb(arango, database);
@@ -61,19 +62,19 @@ async function iksQuery() {
 								kel: kel,
 								rw: rw,
 								rt: rt,
-								kb: rtGroup[*].p.besar.kb,
-								salinFaskes: rtGroup[*].p.besar.salinFaskes,
-								imun: rtGroup[*].p.besar.imun,
-								asi: rtGroup[*].p.besar.asi,
-								tumbuh: rtGroup[*].p.besar.tumbuh,
-								tb: rtGroup[*].p.besar.tb,
-								ht: rtGroup[*].p.besar.ht,
-								jiwa: rtGroup[*].p.besar.jiwa,
-								rokok: rtGroup[*].p.besar.rokok,
-								jkn: rtGroup[*].p.besar.jkn,
-								ab: rtGroup[*].p.besar.ab,
-								jamban: rtGroup[*].p.besar.jamban,
-								rtGroup: rtGroup[*].p.iksBesar
+								kb: rtGroup[*].p.inti.kb,
+								salinFaskes: rtGroup[*].p.inti.salinFaskes,
+								imun: rtGroup[*].p.inti.imun,
+								asi: rtGroup[*].p.inti.asi,
+								tumbuh: rtGroup[*].p.inti.tumbuh,
+								tb: rtGroup[*].p.inti.tb,
+								ht: rtGroup[*].p.inti.ht,
+								jiwa: rtGroup[*].p.inti.jiwa,
+								rokok: rtGroup[*].p.inti.rokok,
+								jkn: rtGroup[*].p.inti.jkn,
+								ab: rtGroup[*].p.inti.ab,
+								jamban: rtGroup[*].p.inti.jamban,
+								rtGroup: rtGroup[*].p.iksInti
 							}
 						`,
             bindVars: {
@@ -110,7 +111,7 @@ async function iksQuery() {
           //info(iks.rt)
           result.push(iks)
           iks._key = ['iks', iks.kel.split(' ').join('_'), iks.rw, iks.rt].join('-')
-          await upsert('iks', iks)
+          await upsert(pusk, 'iks', iks)
         }
         let iks = {
           kel: kel,
@@ -145,7 +146,7 @@ async function iksQuery() {
         //info(iks.rt)
         result.push(iks)
         iks._key = ['iks', iks.kel.split(' ').join('_'), iks.rw, iks.rt].join('-')
-       await upsert('iks', iks)
+       await upsert( pusk, 'iks', iks)
       }
       let iks = {
         kel: kel,
@@ -177,7 +178,7 @@ async function iksQuery() {
       //info(iks)
       result.push(iks)
       iks._key = ['iks', iks.kel.split(' ').join('_'), iks.rw, iks.rt].join('-')
-     await upsert('iks', iks)
+     await upsert( pusk, 'iks', iks)
 
     }
     let iks = {
@@ -210,7 +211,7 @@ async function iksQuery() {
     //console.log(iks)
     result.push(iks)
     iks._key = ['iks', iks.kel.split(' ').join('_'), iks.rw, iks.rt].join('-')
-   await upsert('iks', iks)
+   await upsert( pusk, 'iks', iks)
   } catch (err) {
     console.log(err)
   }
