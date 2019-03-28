@@ -1,4 +1,5 @@
 const { arango, testDb, upsert } = require('./db')
+const logUpdate = require("log-update");
 //iksQuery()
 module.exports = {
   iksQuery
