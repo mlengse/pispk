@@ -22,7 +22,7 @@ const writeStat = (file, no, stat, obj) => {
 };
 
 module.exports = async (pusk) => {
-  //await download(pusk)
+  await download(pusk)
 
   let fileNames = fs.readdirSync(path.join(__dirname, 'download')).filter(item => item.includes('.xlsx') && item.includes(pusk))
 

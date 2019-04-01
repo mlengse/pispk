@@ -7,7 +7,7 @@ module.exports = {
 
 function getPispk() {
   return new Nightmare({
-    show: true,
+    show: false,
     width: 1900,
     //gotoTimeout: 300000,
     webPreferences: {
