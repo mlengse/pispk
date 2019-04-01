@@ -7,8 +7,8 @@ const inputSelection = process.env.SELECTION_INPUT
 const download = process.env.SELECTION_DOWNLOAD
 
 const loginPispk = async (pispk, pusk) => {
-  const username = process.env[`PISPK_${pusk}_USERNAME`]
-  const password = process.env[`PISPK_${pusk}_PASSWORD`]
+  const username = process.env[`PISPK_${pusk.toUpperCase()}_USERNAME`]
+  const password = process.env[`PISPK_${pusk.toUpperCase()}_PASSWORD`]
   try {
     await pispk.goto(url)
       .insert('#username', username)
