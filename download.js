@@ -7,7 +7,7 @@ const { downloadPispk } = require('./pispk')
 module.exports = async (pusk) => {
   let pispk = getPispk()
 
-  /*
+  
 
   let tahun = ['2016']
   let thisYear = moment().format("YYYY");
@@ -16,10 +16,10 @@ module.exports = async (pusk) => {
     tahun.push(thisYear)
     thisYear = moment(thisYear, 'YYYY').subtract(1, 'y').format('YYYY')
   }
-  */
- let tahun = [ moment().format('YYYY')]
+  
+ //let tahun = [ moment().format('YYYY')]
 
-  console.log(tahun)
+  //console.log(tahun)
   await downloadPispk(pispk, pusk, tahun)
   await pispk.end()
 }
